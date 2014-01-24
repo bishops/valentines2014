@@ -16,4 +16,8 @@ The Valentine's Day Matching Application for 2014.
   - ssh into box `vagrant ssh` or [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) on windows pw = `vagrant` un = `vagrant` port = `2222` address = `127.0.0.1`
   - run `cd /vagrant`
   - run `sudo php chvhost.php "valentines/public"`
+  - run `curl -sS https://getcomposer.org/installer | php`
+  - run `mv composer.phar /usr/local/bin/composer`
+  - run `cd valentines`
+  - run `composer install`
   - Open webbrowser to `http://localhost:8888`
