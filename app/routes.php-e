@@ -11,7 +11,15 @@
 |
 */
 
+
 Route::get('/', function()
 {
-	return View::make('hello');
+	if( ! Auth::check() )
+	{
+		return View::make('landing');
+	}
+	else
+	{
+		return App::make('HomeController')->showQuestions();
+	}
 });
