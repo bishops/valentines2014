@@ -50,7 +50,11 @@
     </div>
     <footer>
       <div class="container">
-        <p>Bishop's Valentine's Day Matching Application - Produced by <a href="https://twitter.com/TheBrianAnglin">@theBrianAnglin</a> &amp; Graham Held</p>
+        <p>Bishop's Valentine's Day Matching Application - Produced by <a href="https://twitter.com/TheBrianAnglin">@theBrianAnglin</a> &amp; Graham Held
+       @if(Auth::check())
+        <span class="pull-right"><a href="{{url('/logout')}}">Logout</a></p>
+       @endif
+        </p>
       </div>
     </footer>
   </body>
