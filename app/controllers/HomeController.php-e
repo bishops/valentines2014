@@ -1,5 +1,6 @@
 <?php
 
+
 class HomeController extends BaseController {
 
 	/*
@@ -14,22 +15,35 @@ class HomeController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-	// public function __construct(User $user)
-	// {
-	// 	$this->user = $user;
-	// }
-
+	public function __construct(CustomStageInterface $stage)
+	{
+		$this->stage = $stage;
+	}
 	public function showWelcome()
 	{
 		return View::make('hello');
 	}
 	public function showResults()
 	{
-		return View::make('results');
+		if( $this->stage->getStage('results_complete') == true )
+		{
+			return View::make('results');
+		}
+		else 
+		{
+			return View::make('notresults', array('answer_reveal'=>$this->stage->getStage('answer_reveal') ) );
+		}
 	}
 	public function showQuestions()
 	{
-		// return $this->user->find(0);
-		return View::make('questions');
+		$user = Auth::user();
+
+		if($user->completed_questions == 1)
+		{
+			return View::make('thanks');
+		}else
+		{
+			return View::make('questions', array('answer_deadline'=>$this->stage->getStage('answer_deadline') ) );
+		}
 	}
 }
