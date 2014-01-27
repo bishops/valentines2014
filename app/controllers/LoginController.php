@@ -16,12 +16,12 @@ class LoginController extends \BaseController {
 		$token = $this->sso->validate_token();
 		$user = $this->findOrCreateUser( $token );
 		Auth::login($user);
-		Redirect::to('/');
+		return Redirect::to('/');
 	}
 	public function logout()
 	{
 		Auth::logout();
-		Redirect::to('/');
+		return Redirect::to('/');
 	}
 	private function findOrCreateUser($token)
 	{
