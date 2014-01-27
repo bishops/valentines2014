@@ -2,6 +2,7 @@
 
 use \Mockery as m;
 
+
 class HomeControllerIndexQuestionNotDone extends TestCase
 {
 	public function setUp()
@@ -15,6 +16,10 @@ class HomeControllerIndexQuestionNotDone extends TestCase
 			->getMock();
 
 		App::instance('CustomStageInterface',$stage);
+
+		
+
+
 	}
 	public function testIndexShowQuestionNotComplete()
 	{

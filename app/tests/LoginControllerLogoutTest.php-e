@@ -13,7 +13,7 @@ class LoginControllerLogoutTest extends TestCase
 	{
 		Auth::shouldReceive('logout')->andReturn(true); 
 		
-		Redirect::shouldReceive('to')->with('/')->andReturn(true);
+		Redirect::shouldReceive('to')->with('/')->andReturn("loggedout");
 
 		$crawler = $this->client->request('GET', '/logout');
 
