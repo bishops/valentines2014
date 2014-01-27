@@ -10,7 +10,7 @@ class FileCustomStage implements CustomStageInterface
 
 	public function loadConfig()
 	{
-		$this->config = include('app/custom/stage.php');
+		$this->config = include(dirname(__FILE__).'/../custom/stage.php');
 	}
 	public function getStage($index = "")
 	{
