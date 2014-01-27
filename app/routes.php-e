@@ -24,9 +24,15 @@ Route::get('/', function()
 		return App::make('HomeController')->showQuestions();
 	}
 });
-Route::get('/m',function(){ return View::make('notresults', array('coming_date'=>'2014-02-14 7:30:00'));});
 Route::group(array('before'=>'auth'), function()
 {
 	Route::get('results','HomeController@showResults');
 
 });
+
+Route::group(array('before'=>'local','prefix'=>'m'),function(){//Check if we are on the local enviornment
+	Route::get('notresults',function(){ return View::make('notresults', array('answer_reveal'=>'2014-02-14 7:30:00'));});
+	Route::get('results',function(){ return View::make('results');});
+});
+
+

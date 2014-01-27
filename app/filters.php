@@ -59,7 +59,10 @@ Route::filter('guest', function()
 {
 	if (Auth::check()) return Redirect::to('/');
 });
-
+Route::filter('local',function()
+{
+	if( App::environment() != 'local' ) return App::environment();
+});
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
