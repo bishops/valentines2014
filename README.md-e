@@ -38,3 +38,39 @@ If you get stuck or want help: __Please Email Me! anglinb@bishops.com__
     - Run `git commit -m "YOUR MESSAGE"` Replace YOUR MESSAGE with some the says what you did ex `Adds question view`
     - Run `git push` This pushes your code up to github.com so everyone else can pull it down
     - Win
+
+
+###Intro To Laravel
+The File System
+
+     app/-------------------------- Contains most of the custom code  
+        commands/
+        config/-------------------- Contains all the config options for databases, authentication, etc
+            testing/--------------- Overrides the default configs when running tests
+            local/----------------- Overrride the default configs when running on local machine
+        controller/---------------- Contains all the controllers
+        database/
+            migrations/------------ Contains the database schema (the way the database is structured)
+            seeds/----------------- Contains sample data that gets put into database for testing
+        lang/
+        models/-------------------- Contains all the models (code that makes an object out of a row of the database)
+        start/
+        storage/------------------- Contains pre-compiled views, sessions, and uploads
+        tests/--------------------- Contains all unit tests
+        views/--------------------- Contains all views (template files that say what a page should look like)
+        filters.php---------------- Set of "filters" that can be applied to routes (protects login-required pages)
+        routes.php----------------- File that contains all the routes (urls) that your application will respond to
+    /bootstrap
+    /public----------------------- Webserver root
+        index.php----------------- File where all requests are sent
+    /vendor----------------------- Contains all 3rd party frameworks/code
+    artisan----------------------- Command Line Utility to run migrations 
+    phpunit----------------------- Runs unit tests
+    composer.json----------------- Contians all the 3rd party dependecies
+
+
+###Trouble Shooting
+
+Common Errors and Fixes
+
+  - `permission denied for file_put_contents` from the `/vagrant/valentines` dir run `sudo chmod -R o+w app/storage`
