@@ -34,16 +34,5 @@ class HomeController extends BaseController {
 			return View::make('notresults', array('answer_reveal'=>$this->stage->getStage('answer_reveal') ) );
 		}
 	}
-	public function showQuestions()
-	{
-		$user = Auth::user();
 
-		if($user->completed_questions == 1)
-		{
-			return View::make('thanks');
-		}else
-		{
-			return View::make('questions', array('answer_deadline'=>$this->stage->getStage('answer_deadline') ) );
-		}
-	}
 }
