@@ -38,7 +38,7 @@ Route::get('/', function()
 	}
 	else
 	{
-		return App::make('HomeController')->showQuestions();
+		return App::make('QuestionsController')->showQuestions();
 	}
 });
 Route::group(array('before'=>'auth'), function()
