@@ -16,7 +16,7 @@ class CreateQuestionResponseTable extends Migration {
 		{
 
 			$table->increments('id');
-			$talbe->integer('question_id');
+			$table->integer('question_id');
 			$table->integer('user_id');
 			$table->string('answer',1);
 			$table->timestamps();
@@ -31,7 +31,7 @@ class CreateQuestionResponseTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('question_response')
+		Schema::drop('question_response');
 	}
 
 }

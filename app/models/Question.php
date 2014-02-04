@@ -6,5 +6,8 @@ Class Question extends Eloquent
 
 	protected $fillable = array('prompt','answera','answerb','answerc','answerd');
 
-
+	public function getQuestionIds()
+	{
+		return DB::table($this->table)->lists('id');
+	}
 }
