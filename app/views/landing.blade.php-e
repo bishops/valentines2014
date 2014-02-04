@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layout.full')
 @section('main')
 <div class="jumbotron">
 	<h1>Happy Valentine's Day</h1>
