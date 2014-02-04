@@ -6,20 +6,24 @@ interface CustomStageInterface
 
 class FileCustomStage implements CustomStageInterface
 {
-	protected $config_array;
+	public $config;
 
+	public function __construct()
+	{
+		$this->loadConfig();
+	}
 	public function loadConfig()
 	{
 		$this->config = include(dirname(__FILE__).'/../custom/stage.php');
+		if( $this->config == NULL)
+		{
+			throw new Exception("Error Processing Request", 1);
+		}
 	}
 	public function getStage($index = "")
 	{
 		// var_dump("hitting the real deal");
-		if( ! isset ( $config_array ) )
-		{
-			$this->loadConfig();
-		}
-		return $this->config_array[$index];
+		return $this->config[$index];
 	}
 }
 
