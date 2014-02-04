@@ -45,6 +45,7 @@ Route::group(array('before'=>'auth'), function()
 {
 	Route::get('results','HomeController@showResults');
 	Route::get('logout','LoginController@logout');
+	Route::post('questions','QuestionsController@storeQuestions');
 });
 
 Route::group(array('before'=>'local','prefix'=>'m'),function(){//Check if we are on the local enviornment
