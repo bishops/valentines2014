@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        @include('layout.style.bootstrapoverrides')
         .navbar-default .navbar-nav>.active>a
         {
           border-bottom: 2px solid #ff95e3;
@@ -55,6 +56,10 @@
         .wrapper > .container {
             /*padding-top: 60px;*/
         }
+        .jumbotron{
+          background-color: rgba(238, 238, 238, .75);
+        }
+        
     </style>
   </head>
   <body>
