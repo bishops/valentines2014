@@ -14,14 +14,26 @@ class LoginController extends \BaseController {
 	public function recieveLogin()
 	{
 		$token = $this->sso->validate_token();
-		$user = $this->findOrCreateUser( $token );
-		Auth::login($user);
-		return Redirect::to('/');
+		$user = $this->findUser( $token );
+		if ( $user != false )
+		{
+			Auth::login($user);
+			return Redirect::to('/');
+		}else 
+		{
+			Session::put('message', 'It doesn\'t look like you are in the Upper School. Better luck next year!');
+			return Redirect::to('/');
+		}
 	}
 	public function logout()
 	{
 		Auth::logout();
 		return Redirect::to('/');
+	}
+	private function findUser( $token )
+	{
+		$user = $this->user->findByEmail( $token['email'] );
+		return $user;
 	}
 	private function findOrCreateUser($token)
 	{
