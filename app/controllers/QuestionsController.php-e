@@ -2,8 +2,6 @@
 
 class QuestionsController Extends BaseController
 {
-	// protected $allowed_answers = array('a','b','c','d');
-	// protected $extra_input = array('gender','grade');
 	protected $errors = array();
 	protected $qra = array();
 	protected $user;
@@ -28,11 +26,6 @@ class QuestionsController Extends BaseController
 			return View::make('questions')->with( array('answer_deadline'=>$this->stage->getStage('answer_deadline'),'questions'=>$questions ) );
 		}
 	}
-
-	// public function storeQuestions()
-	// {
-	// 	$this->
-	// }
 	public function generateValidation()
 	{
 		$validator = array();
@@ -70,69 +63,19 @@ class QuestionsController Extends BaseController
 		$validator = Validator::make(Input::all(),$this->generateValidation());
 		if( $validator->fails())
 		{
-			// return "erros";
 			return Redirect::to('/')->withInput()->withErrors($validator);
 		}
 		else
 		{
 			$this->storeActualQuestions();
 			$this->storeUserData();
+			$this->pushMatchstoQueue();
 			return Redirect::to('/');
 		}
 
 	}
-	// private function sortInput()
-	// {
-	// 	foreach (Input::all() as $key => $value) {
-	// 		if( strpos($key,'question') !== false){
-	// 			$qr = App::make('QuestionResponseInterface');
-	// 			$qr->question_id = intval(str_replace('question', '', $key));$question_id = intval(str_replace('question', '', $key));
-	// 			$qr->answer = in_array($value, array('a','b','c','d') ? $value : 'n';
-	// 			$qr->user_id = $this->user->id;
-	// 			array_push($this->qra, $qr);
-	// 		}
-	// 		if ( $key == 'gender' ) //Input about gender
-	// 		{
-	// 			$this->user->gender = intval($value);
-	// 		}
-	// 		if ( $key == 'grade' ) //Input about grade
-	// 		{
-	// 			$this->user->grad_year = 12 - intval($value) + date('Y');
-	// 		}
-	// 	}
-	// }
-
-
-
-	// public function storeQuestions()
-	// {	
-
-	// 	$user = Auth::user();
-	// 	foreach (Input::all() as $key => $value) {
-	// 		if( strpos($key,'question') !== false){
-	// 			$qr = App::make('QuestionResponseInterface');
-	// 			$question_id = intval(str_replace('question', '', $key));
-	// 			if( in_array($value, array('a','b','c','d') ) )
-	// 			{
-	// 				$question_response = $value;
-	// 			}else
-	// 			{
-	// 				array_push($this->error, 'Invalid Response');
-	// 			}
-	// 		}elseif (in_array($key, $extra_input)) {
-	// 			if( $key == "gender")
-	// 			{
-	// 				$user->gender = intval($value);
-	// 			}
-	// 			if( $key == "grade" && intval($value) < 13)
-	// 			{
-	// 				$user->grad_year = 12 - intval($value) + 2014;
-	// 			}
-	// 		}else
-	// 		{
-
-	// 		}
-	// 	}
-	// 	// var_dump(Input::all());
-	// }
+	public function pushMatchsToQueue()
+	{
+		Queue::push('MatchProcessor', array('user_id' => Auth::user()->id));
+	}
 }
