@@ -44,15 +44,30 @@ Route::get('/', function()
 Route::group(array('before'=>'auth'), function()
 {
 	Route::get('results','HomeController@showResults');
+	Route::get('results/{id}','HomeController@showResults');
 	Route::get('logout','LoginController@logout');
 	Route::post('questions','QuestionsController@storeQuestions');
+
 });
 
 Route::group(array('before'=>'local','prefix'=>'m'),function(){//Check if we are on the local enviornment
 	Route::get('notresults',function(){ return View::make('notresults', array('answer_reveal'=>'2014-02-14 7:30:00'));});
 	Route::get('results',function(){ return View::make('results');});
 	Route::get('requestpath',function(){ return url('/');});
-
+	Route::get('testq',function(){return Auth::user()->questionResponses()->get();});
+	Route::get('testQueue','QuestionsController@pushMatchsToQueue');
+	Route::get('match',function(){
+			$match = new Match;
+			$match->user_id_1 = 1;
+			$match->user_id_2 = 1;
+			$match->match_score = .5;
+			$match->save();
+	});	
+	Route::get('authOther',function(){
+		$user = User::find(1);
+		Auth::login($user);
+		return "ek";
+	});
 });
 
 
