@@ -30,6 +30,8 @@ class HomeController extends BaseController {
 			$user = Auth::user();
 		}else
 		{
+			Queue::push('LogProcessor', array('user_id' => Auth::user()->id,'page_id'=>intval($id)));
+			
 			$user = User::find(intval($id));
 		}
 		if( strtotime( $this->stage->getStage('answer_reveal') ) < time() )

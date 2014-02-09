@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 
 
 		$this->call('NMatchesTableSeeder');
+		$this->call('LogsTableSeeder');
 	}
 
 }
