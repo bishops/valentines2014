@@ -23,11 +23,17 @@ class HomeController extends BaseController {
 	{
 		return View::make('hello');
 	}
-	public function showResults()
+	public function showResults($id = null)
 	{
-		if( $this->stage->getStage('results_complete') == true )
+		if( $id == null )
 		{
 			$user = Auth::user();
+		}else
+		{
+			$user = User::find(intval($id));
+		}
+		if( strtotime( $this->stage->getStage('answer_reveal') ) < time() )
+		{
 			$this->fillMatches($user);
 			return View::make('results')->with($this->prepareViewData( $user ));
 		}
