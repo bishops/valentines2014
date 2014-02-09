@@ -6,12 +6,12 @@ class MatchProcessor
 	{
 		$user = User::find($data['user_id']);
 
-		foreach (User::where('id','<>',$data['user_id'])->get() as $key => $value) {
+		foreach (User::where('id','<>',$data['user_id'])->where('completed_questions','=',1)->get() as $key => $value) {
 			$match = new Match;
 			$match->user_id_1 = $user->id;
 			$match->user_id_2 = $value->id;
 			$match->match_score = $this->calcMatch($user,$value);
-			$math->save();
+			$match->save();
 		}
 
 		$job->delete();
@@ -22,8 +22,7 @@ class MatchProcessor
 		$q2 = $user2->questionResponses()->orderBy('question_id', 'asc')->get();
 		if( $q1->count() != $q2->count())
 		{
-			echo "error";
-			exit;
+			return 0;
 		}
 		$matches = 0;
 		$q2 = $q2->toArray();
