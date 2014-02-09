@@ -9,7 +9,7 @@ class UserTableSeeder extends Seeder {
 
 		$all = array();
 		ini_set("auto_detect_line_endings", true);
-		$string = file_get_contents('/vagrant/mch2/setup/USstudents.csv');
+		$string = file_get_contents(__DIR__.'/../../custom/USstudents.csv');
 		$line_array = explode("\n", $string);
 		foreach ($line_array as $key => $value) {
 			$param_array = explode(",", $value);

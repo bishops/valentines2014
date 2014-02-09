@@ -177,23 +177,23 @@ class QuestionTableSeeder extends Seeder {
 
                 );
 
-                $questions = array(
-                    array(
-                        'prompt'=>'TEST QUESTION 1',
-                        'answera'=>'Not at all',
-                        'answerb'=>'A whole lot!',
-                        'answerc'=>'OMG THEY\'RE THE BEST!!!!!!!',
-                        'answerd'=>'My passion for ASBC burns with the intensity of 1,000,000 suns'
-                    ),    
-                    array(
-                        'prompt'=>'TEST QUESTION 2',
-                        'answera'=>'Not fds all',
-                        'answerb'=>'A wholfdsafdsfasde lot!',
-                        'answerc'=>'OMG fdsafdTHEY\'RE THE BEST!!!!!!!',
-                        'answerd'=>'My passiofdsafsn for ASBC burns with the intensity of 1,000,000 suns'
-                    ),               
+                // $questions = array(
+                //     array(
+                //         'prompt'=>'TEST QUESTION 1',
+                //         'answera'=>'Not at all',
+                //         'answerb'=>'A whole lot!',
+                //         'answerc'=>'OMG THEY\'RE THE BEST!!!!!!!',
+                //         'answerd'=>'My passion for ASBC burns with the intensity of 1,000,000 suns'
+                //     ),    
+                //     array(
+                //         'prompt'=>'TEST QUESTION 2',
+                //         'answera'=>'Not fds all',
+                //         'answerb'=>'A wholfdsafdsfasde lot!',
+                //         'answerc'=>'OMG fdsafdTHEY\'RE THE BEST!!!!!!!',
+                //         'answerd'=>'My passiofdsafsn for ASBC burns with the intensity of 1,000,000 suns'
+                //     ),               
 
-                );
+                // );
 
                 // Uncomment the below to run the seeder
                 DB::table('questions')->insert($questions);

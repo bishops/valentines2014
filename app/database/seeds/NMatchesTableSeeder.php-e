@@ -60,6 +60,6 @@ class NMatchesTableSeeder extends Seeder {
 		// $table->integer('user_id_2');
 		// $table->float('match_score');
 		// Uncomment the below to run the seeder
-		DB::table('matches')->insert($matches);
+		// DB::table('matches')->insert($matches);
 	}
 }
