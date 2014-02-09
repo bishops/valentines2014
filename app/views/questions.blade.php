@@ -1,7 +1,7 @@
 @extends('layout.index')
 @section('main')
 <div class="jumbotron">
-	<h1>Questions</h1>
+	<h1>Questions Due: <strong>Wednesday 12pm </strong></h1>
 	<p>Please fill out the questions below and bHarmony will find a you a perfect (medicore/almost random) match!</p>
 </div>
 <style>
