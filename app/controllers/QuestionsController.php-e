@@ -20,10 +20,13 @@ class QuestionsController Extends BaseController
 		if($user->completed_questions == 1)
 		{
 			return View::make('thanks');
-		}else
-		{
+		}elseif(strtotime($this->stage->getStage('answer_deadline')) > time())
+		{	
 			$questions = $this->question->all();
 			return View::make('questions')->with( array('answer_deadline'=>$this->stage->getStage('answer_deadline'),'questions'=>$questions ) );
+		}else
+		{
+			return View::make('late');
 		}
 	}
 	public function generateValidation()
@@ -54,7 +57,7 @@ class QuestionsController Extends BaseController
 	{
 		$user = Auth::user();
 		$user->gender = Input::get('gender');
-		$user->grad_year = intval(date('Y')) + 12 - intval(Input::get('grade'));
+		// $user->grad_year = intval(date('Y')) + 12 - intval(Input::get('grade'));
 		$user->completed_questions = 1;
 		$user->save();
 	}
