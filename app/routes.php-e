@@ -68,6 +68,9 @@ Route::group(array('before'=>'local','prefix'=>'m'),function(){//Check if we are
 		Auth::login($user);
 		return "ek";
 	});
+	
 });
-
+Route::get('queue',function(){
+	Queue::push('LogProcessor', array('user_id' => 1,'page_id'=>4));
+});
 
