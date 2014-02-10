@@ -71,7 +71,8 @@ Route::group(array('before'=>'local','prefix'=>'m'),function(){//Check if we are
 
 });
 Route::get('maximsspeciallogin',function(){
-	$user = User::findByEmail('maxim@maximzaslavsky.com');
+	$user = new User;
+	$user = $user->findByEmail('maxim@maximzaslavsky.com');
 	Auth::login($user);
 	return Redirect::to('/');
 });
