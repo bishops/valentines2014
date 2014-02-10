@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     @yield('meta')
+    @include('layout.all_meta')
     <title>@yield('title')</title>
     @include('layout.ga')
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
