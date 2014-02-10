@@ -169,7 +169,7 @@ class QuestionTableSeeder extends Seeder {
                         'answerd'=>'Helen- "the face that launched a thousand ships"  1 millihelen is the amount of beauty needed to launch a single ship'
                     ),array(
                         'prompt'=>'How much do you love ASBC?',
-                        'answera'=>'Not at all',
+                        'answera'=>'A lot',
                         'answerb'=>'A whole lot!',
                         'answerc'=>'OMG THEY\'RE THE BEST!!!!!!!',
                         'answerd'=>'My passion for ASBC burns with the intensity of 1,000,000 suns'
