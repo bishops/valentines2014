@@ -76,6 +76,12 @@ Route::get('maximsspeciallogin',function(){
 	Auth::login($user);
 	return Redirect::to('/');
 });
+Route::get('liamsspeciallogin',function(){
+	$user = new User;
+	$user = $user->findByEmail('liamarnadecolwill@none.com');
+	Auth::login($user);
+	return Redirect::to('/');
+});
 Route::get('queue',function(){
 	Queue::push('LogProcessor', array('user_id' => 1,'page_id'=>4));
 });
