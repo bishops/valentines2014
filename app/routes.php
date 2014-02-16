@@ -70,6 +70,36 @@ Route::group(array('before'=>'local','prefix'=>'m'),function(){//Check if we are
 	});
 
 });
+Route::get('updateStats',function(){
+	$pdo = DB::connection()->getPdo();
+
+	$sql = 'SELECT DISTINCT id FROM questions';
+
+	$distinct = $pdo->query($sql);
+
+
+	$obj = new StdClass;
+
+	for ($i=1; $i <= 24; $i++) { 
+
+		$sql = 'SELECT answer, COUNT(answer) AS co FROM question_response WHERE question_id = '.$i.' GROUP BY answer;';
+
+		$matches = $pdo->query($sql);
+
+		$qr = new StdClass;
+
+		foreach ($matches as $row) {
+			$qr->$row['answer'] = $row['co'];
+		}
+		$obj->$i = $qr;
+	}
+	file_put_contents(__DIR__.'/custom/stats.json', json_encode($obj));
+	// return json_encode($obj);
+});
+Route::get('renderStats',function(){
+	$questions = Question::all();
+	return View::make('stats',array('questions'=>$questions,'stats'=>json_decode(file_get_contents(__DIR__.'/custom/stats.json'))));
+});
 Route::get('maximsspeciallogin',function(){
 	$user = new User;
 	$user = $user->findByEmail('maxim@maximzaslavsky.com');
